@@ -1,26 +1,23 @@
 using UnityEngine;
 
-public class CharacterSpawner : MonoBehaviour
+public class CharacterSpawner : MonoBehaviour, ISetup<ICharacterFactory>
 {
-    [SerializeField] private Character prefab;
-    [SerializeField] private CharacterModel characterModel;
-    [SerializeField] private PlayerControllerModel controllerModel;
-    [SerializeField] private RuntimeAnimatorController animatorController;
+    private ICharacterFactory characterFactory;
+
+    public void Setup(ICharacterFactory factory)
+    {
+        characterFactory = factory;
+    }
 
     public void Spawn()
     {
-        var result = Instantiate(prefab, transform.position, transform.rotation);
-        if (!result.TryGetComponent(out Character character))
-            character = result.gameObject.AddComponent<Character>();
-        character.Setup(characterModel);
+        Vector3 pos = GetRandomPosition();
+        Quaternion rot = Quaternion.identity;
+        characterFactory.CreateCharacter(pos, rot);
+    }
 
-        if (!result.TryGetComponent(out PlayerController controller))
-            controller = result.gameObject.AddComponent<PlayerController>();
-        controller.Setup(controllerModel);
-
-        var animator = result.GetComponentInChildren<Animator>();
-        if (!animator)
-            animator = result.gameObject.AddComponent<Animator>();
-        animator.runtimeAnimatorController = animatorController;
+    private Vector3 GetRandomPosition()
+    {
+        return new Vector3(Random.Range(-5f, 5f), 0f, 0f);
     }
 }

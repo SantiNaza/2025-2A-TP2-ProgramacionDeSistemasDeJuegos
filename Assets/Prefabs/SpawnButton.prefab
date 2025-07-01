@@ -271,3 +271,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   button: {fileID: 5494813735892577113}
+  factorySO: {fileID: 11400000, guid: 691b33b8ae956314796fb9e444294b69, type: 2}
