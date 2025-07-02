@@ -22,9 +22,11 @@ public class PlayerController : MonoBehaviour, ISetup<IPlayerControllerModel>
             Model.MoveInput.action.started += HandleMoveInput;
             Model.MoveInput.action.performed += HandleMoveInput;
             Model.MoveInput.action.canceled += HandleMoveInput;
+            Model.MoveInput.action.Enable();
         }
         if (Model.JumpInput?.action != null)
             Model.JumpInput.action.performed += HandleJumpInput;
+            Model.JumpInput.action.Enable();
     }
     private void OnDisable()
     {

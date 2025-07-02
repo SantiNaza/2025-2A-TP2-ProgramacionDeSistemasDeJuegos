@@ -22,7 +22,6 @@ public class CommandConsole : MonoBehaviour, ILogHandler
         RegisterCommand(new HelpCommand(commands));
         RegisterCommand(new AliassesCommand(commands));
         RegisterCommand(new PlayAnimationCommand());
-        RegisterCommand(new PrintUserNameCommand());
 
         toggleButton.onClick.AddListener(ToggleConsole);
         consolePanel.SetActive(false);
@@ -80,13 +79,5 @@ public class CommandConsole : MonoBehaviour, ILogHandler
     {
         defaultLogger.LogException(exception, context);
         outputText.text += exception.Message + "\n";
-    }
-
-    public class PrintUserNameCommand : ICommand
-    {
-        public string Name => "printusername";
-        public string[] Aliases => new string[0];
-        public string Description => "Print funny name.";
-        public void Execute(string[] args) => Debug.Log("My Name is Jeff");
     }
 }

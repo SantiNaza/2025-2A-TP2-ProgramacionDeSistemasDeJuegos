@@ -347,5 +347,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <Model>k__BackingField:
     <Acceleration>k__BackingField: 10
-    <Speed>k__BackingField: 2
-    <JumpForce>k__BackingField: 5
+    <Speed>k__BackingField: 5
+    <JumpForce>k__BackingField: 10
